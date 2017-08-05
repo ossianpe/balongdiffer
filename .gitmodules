@@ -1,0 +1,3 @@
+[submodule "ext/balong-nvtool"]
+	path = ext/balong-nvtool
+	url = https://github.com/forth32/balong-nvtool.git
