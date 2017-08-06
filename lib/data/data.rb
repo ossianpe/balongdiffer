@@ -1,35 +1,35 @@
 class Balongdiffer::Data
-  attr_accessor :fileOneAddresses, :fileTwoAddresses, :addressNamesKey
+  attr_accessor :fileAddresses, :addressNamesKey, :diffs
   #Constructor
   def initialize
-    @fileOneAddresses
-    @fileTwoAddresses
+    @fileAddresses
     @addressNamesKey = Array.new
+    @diffs = Array.new
   end
 
   public
 
-  def setfileone(data)
-    @fileOneAddresses = data
-  end
-
-  def setfiletwo(data)
-    @fileTwoAddresses = data
+  def setfileaddresses(data)
+    @fileAddresses = data
   end
 
   def setaddresskeys(addkeys)
-    @addressNamesKey
+    @addressNamesKey = addkeys
   end
 
-  def returnfileone
-    return @fileOneAddresses
+  def setdiffs(diffs)
+    @diffs = diffs
   end
 
-  def returnfiletwo
-    return @fileTwoAddresses
+  def returnfileaddresses
+    return @fileAddresses
   end
 
   def returnaddresskeys
     return @addressNamesKey
+  end
+
+  def returndiffs
+    return @diffs
   end
 end

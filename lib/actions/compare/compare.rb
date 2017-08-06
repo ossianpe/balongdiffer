@@ -1,6 +1,6 @@
 class Balongdiffer::Compare
   def difffiles(fileone, filetwo, addresskeys)
-    print "files and keys loaded!.."
+    print "address keys loaded!..ready to diff"
     # addresskeys.each do |key|
     # end
   end

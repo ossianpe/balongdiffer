@@ -1,13 +1,23 @@
 class Balongdiffer
   def self.start(firstfile, secondfile)
+    #Instatiate objects
     data = Data.new
     read = Balongdiffer::Read.new
-    data.setfileone(read.readfile(firstfile))
-    addresskeys = read.retrieveaddressnameskey(data.returnfileone)
-    data.setaddresskeys(addresskeys)
-    data.setfiletwo(read.readfile(secondfile))
     compare = Balongdiffer::Compare.new
-    compare.difffiles(data.returnfileone, data.returnfiletwo, data.returnaddresskeys)
+
+    #Save register of addresses
+    data.setfileaddresses(read.readfile(firstfile))
+
+    #Determine index of address keys. This is determined by names found on
+    #  addresses list pulled from first file. This will be used as an index
+    #  to compare both files against.
+    addresskeys = read.retrieveaddressnameskey(data.returnfileaddresses)
+
+    #Save index
+    data.setaddresskeys(addresskeys)
+
+    #Diff the two files only at values determined by the index
+    compare.difffiles(firstfile, secondfile, data.returnaddresskeys)
   end
 end
 
