@@ -1,8 +1,12 @@
 class Balongdiffer
-  def self.start(filename)
+  def self.start(firstfile, secondfile)
     addressnames = Balongnvtool.new
-    addressnames.printaddressnames(filename)
+    addressnames.printaddressnames(firstfile)
+    addressnames.retrieveaddressnameskey
+    addressnames.printaddressnames(secondfile)
+    addressnames.compare
   end
 end
 
-require 'parse/read'
+require 'actions/read/read'
+require 'actions/compare/compare'
