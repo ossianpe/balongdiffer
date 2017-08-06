@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'balongdiffer'
-  s.version     = '0.4.1'
+  s.version     = '0.5.1'
   s.executables << 'balongdiffer'
   s.date        = '2017-08-05'
   s.summary     = "Prints diffs between two balong nv.bin files"
@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Peter Ossian"]
   s.email       = 'msuossianpe@gmail.com'
   s.files       = ["lib/balongdiffer.rb",
+                   "lib/data/data.rb",
                    "lib/actions/read/read.rb",
                    "lib/actions/compare/compare.rb",
                    "ext/balong-nvtool"]
