@@ -17,7 +17,13 @@ class Balongdiffer
     data.setaddresskeys(addresskeys)
 
     #Diff the two files only at values determined by the index
-    compare.difffiles(firstfile, secondfile, data.returnaddresskeys)
+    diffs = compare.difffiles(firstfile, secondfile, data.returnaddresskeys)
+
+    #Save diffs
+    data.setdiffs(diffs)
+
+    #Write to file to file
+    
   end
 end
 

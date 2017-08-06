@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'balongdiffer'
-  s.version     = '0.6.0'
+  s.version     = '0.7.0'
   s.executables << 'balongdiffer'
   s.date        = '2017-08-05'
   s.summary     = "Prints diffs between two balong nv.bin files"
