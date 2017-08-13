@@ -20,10 +20,8 @@ module BalongDiffer::Read
     #  This array will later on be used for comparing the two modem files.
     def retrieveaddressnameskey(fileonedata)
       arr = Array.new
-      counter = 0
-      fileonedata.each_line do |single_line|
-        counter +=1
-        arr.push(single_line.split[0]) if (single_line.split[5] && counter>20)
+      fileonedata.each_line.with_index do |single_line, index|
+        arr.push(single_line.split[0]) if (single_line.split[5] && index>20)
       end
       return arr
     end
