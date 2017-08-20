@@ -1,4 +1,4 @@
-#Info
+# Info
 
 This gem takes the diff between two Huawei Balong modem files (with the help of [balong-nvtool](https://github.com/forth32/balong-nvtool)). Please excuse the Russian.
 
@@ -12,7 +12,7 @@ Ensure gems are installed
 bundle install --binstubs
 ```
 
-#Execution instructions
+## Execution instructions
 
 ```bash
 balongdiffer <modem_one> <modem_two> > diffs.txt
