@@ -8,6 +8,12 @@ This gem will print all the different address names between the two modem files.
 
 Ensure gems are installed
 
-```
-bundle install --binstubs
 ```bash
+bundle install --binstubs
+```
+
+#Execution instructions
+
+```bash
+balongdiffer <modem_one> <modem_two> > diffs.txt
+```
