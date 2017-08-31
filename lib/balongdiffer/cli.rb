@@ -4,7 +4,7 @@ require 'balongdiffer/actions/write/base'
 require 'balongdiffer/actions/compare/base'
 require 'balongdiffer/data/base'
 
-module SystemdMon
+module BalongDiffer
   class CLI
     def start(firstfile, secondfile)
       #Instatiate objects
@@ -13,7 +13,7 @@ module SystemdMon
       compare = BalongDiffer::Compare::Base.new
 
       #Save register of addresses
-      data.setfileaddresses(read.readfile(firstfile))
+      data.setfileaddresses(read.loadfileaddress(firstfile))
 
       #Determine index of address keys. This is determined by names found on
       #  addresses list pulled from first file. This will be used as an index

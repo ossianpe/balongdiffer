@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 require 'balongdiffer/cli'
 
-SystemdMon::CLI.new.start(ARGV[0], ARGV[1])
+BalongDiffer::CLI.new.start(ARGV[0], ARGV[1])

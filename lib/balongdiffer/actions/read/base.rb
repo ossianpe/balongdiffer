@@ -1,7 +1,23 @@
+class String
+  def convert_base(from, to)
+    self.to_i(from).to_s(to)
+    # works up-to base 36
+  end
+end
+
 module BalongDiffer::Read
   class Base
+    #Reads address location in modem bin file into memory
+    def readaddressoffset(filename, length, offset)
+      #TODO fix garbled output
+      decoffset=offset.convert_base(16, 10).to_i
+      totallength=length.to_i + decoffset
+      s = File.binread(filename, totallength, decoffset)
+      return bits = s.unpack("H*") # "01011111010110111000111000010011"
+    end
+
     #Retrieve the address arrays from the balong-nvtool
-    def readfile(filename)
+    def loadfileaddress(filename)
       if filename.to_s.empty?
         puts "ERROR: No modem file given."
         puts "Please provide a modem file such as \"nv.bin\""
@@ -14,6 +30,18 @@ module BalongDiffer::Read
       Open3.popen3(cmd) do |stdin, stdout, stderr, thread|
         return stdout.read
       end
+    end
+
+    #Retrieve the address for a given Address name
+    def getoffsetandlength(fileaddresses, addressname)
+      fileaddresses.each_line { |line|
+        if line =~ /#{addressname}/ then
+          #Return offset and length
+          return [line.split[2], line.split[3]]
+        end
+      }
+      puts "ERROR: Address Name '#{addressname}' not found."
+      exit(0)
     end
 
     #If there is an associated Address Name, add the address identifier to an array.
