@@ -1,5 +1,8 @@
 module BalongDiffer::Compare
   class Base
+    def diffwords(wordone, wordtwo)
+      return wordone.eql? wordtwo
+    end
     #Get the diffs between the two files at the indexies
     def difffiles(fileone, filetwo, addresskeys)
       fileoneresult = String.new

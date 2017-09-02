@@ -1,7 +1,8 @@
 module BalongDiffer::Data
   class File
     attr_accessor :fileoneaddresses, :filetwoaddresses, :wordname, :addressoneoffsetlocation,
-      :addresstwooffsetlocation, :addressonelength, :addresstwolength, :addresstwooffset
+      :addresstwooffsetlocation, :addressonelength, :addresstwolength, :wordone,
+      :wordtwo, :issame
     #Constructor
     def initialize
       @fileoneaddresses = String.new

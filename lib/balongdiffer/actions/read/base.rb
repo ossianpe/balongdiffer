@@ -11,7 +11,7 @@ module BalongDiffer::Read
     def readaddressoffset(filename, length, offset)
       #TODO fix garbled output
       decoffset=offset.convert_base(16, 10).to_i
-      totallength=length.to_i + decoffset
+      totallength=length.to_i
       s = File.binread(filename, totallength, decoffset)
       return bits = s.unpack("H*") # "01011111010110111000111000010011"
     end

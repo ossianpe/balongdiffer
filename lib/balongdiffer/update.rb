@@ -1,6 +1,7 @@
 require 'balongdiffer'
 require 'balongdiffer/actions/read/base'
 require 'balongdiffer/actions/write/base'
+require 'balongdiffer/actions/compare/base'
 require 'balongdiffer/data/file'
 
 module BalongDiffer
@@ -10,6 +11,8 @@ module BalongDiffer
       #Instatiate objects
       data = BalongDiffer::Data::File.new
       read = BalongDiffer::Read::Base.new
+      writ = BalongDiffer::Write::Base.new
+      comp = BalongDiffer::Compare::Base.new
 
       #Save register of addresses for first and second files
       data.fileoneaddresses=read.loadfileaddress(firstfile)
@@ -19,25 +22,20 @@ module BalongDiffer
       data.addressoneoffsetlocation, data.addressonelength=read.getoffsetandlength(data.fileoneaddresses, addressname)
       data.addresstwooffsetlocation, data.addresstwolength=read.getoffsetandlength(data.filetwoaddresses, addressname)
 
-      puts data.addressoneoffsetlocation
-      puts data.addresstwooffsetlocation
+      #Read word
+      data.wordone=read.readaddressoffset(firstfile, data.addressonelength, data.addressoneoffsetlocation)
+      data.wordtwo=read.readaddressoffset(secondfile, data.addresstwolength, data.addresstwooffsetlocation)
 
-      #Read address offset
-      data.addresstwooffset=read.readaddressoffset(secondfile, data.addressonelength, data.addressoneoffsetlocation)
+      #Determine if the words from both files are the same
+      data.issame=comp.diffwords(data.wordone, data.wordtwo)
 
-      puts data.addresstwooffset
-      #Read binary file, convert to hex, and save to data object
-      # data.binaryfileone=read.readbinaryfile(firstfile)
-      # puts data.binaryfileone
+      #Print results to screen for user
+      writ.showdiff(data.issame, firstfile, data.wordone, secondfile, data.wordtwo)
 
-      #Determine index of address keys. This is determined by names found on
-      #  addresses list pulled from first file. This will be used as an index
-      #  to compare both files against.
-      # addresskeys = read.retrieveaddressnameskey(data.returnfileaddresses)
+      #Write the diff to the first file
+      writ.writemodem(data.issame, firstfile, data.addressoneoffsetlocation, data.wordtwo)
 
-      #Save index
-      # data.setaddresskeys(addresskeys)
-
+      exit(0)
     end
   end
 end
