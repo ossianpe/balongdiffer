@@ -36,8 +36,8 @@ module BalongDiffer::Read
     def getoffsetandlength(fileaddresses, addressname)
       fileaddresses.each_line { |line|
         if line =~ /#{addressname}/ then
-          #Return offset and length
-          return [line.split[2], line.split[3]]
+          #Return offset and length, if addressname matches exactly
+          return [line.split[2], line.split[3]] if line.split[5].eql? addressname
         end
       }
       puts "ERROR: Address Name '#{addressname}' not found."
